@@ -1,6 +1,6 @@
 # StoreApi
 
-All URIs are relative to *http://petstore.swagger.io/v2*
+All URIs are relative to *https://petstore.swagger.io/v2*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -30,7 +30,7 @@ import org.openapitools.client.api.StoreApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    defaultClient.setBasePath("https://petstore.swagger.io/v2");
 
     StoreApi apiInstance = new StoreApi(defaultClient);
     String orderId = "orderId_example"; // String | ID of the order that needs to be deleted
@@ -93,7 +93,7 @@ import org.openapitools.client.api.StoreApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    defaultClient.setBasePath("https://petstore.swagger.io/v2");
     
     // Configure API key authorization: api_key
     ApiKeyAuth api_key = (ApiKeyAuth) defaultClient.getAuthentication("api_key");
@@ -157,7 +157,7 @@ import org.openapitools.client.api.StoreApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    defaultClient.setBasePath("https://petstore.swagger.io/v2");
 
     StoreApi apiInstance = new StoreApi(defaultClient);
     Long orderId = 56L; // Long | ID of pet that needs to be fetched
@@ -221,7 +221,7 @@ import org.openapitools.client.api.StoreApi;
 public class Example {
   public static void main(String[] args) {
     ApiClient defaultClient = Configuration.getDefaultApiClient();
-    defaultClient.setBasePath("http://petstore.swagger.io/v2");
+    defaultClient.setBasePath("https://petstore.swagger.io/v2");
 
     StoreApi apiInstance = new StoreApi(defaultClient);
     Order order = new Order(); // Order | order placed for purchasing the pet

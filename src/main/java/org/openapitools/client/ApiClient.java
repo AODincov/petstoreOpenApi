@@ -65,7 +65,8 @@ import org.openapitools.client.auth.OAuthFlow;
  */
 public class ApiClient {
 
-    private String basePath = "http://petstore.swagger.io/v2";
+    //несоответствие документации ведет к боли
+    private String basePath = "https://petstore.swagger.io/v2";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private Map<String, String> defaultCookieMap = new HashMap<String, String>();
@@ -222,7 +223,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g http://petstore.swagger.io/v2
+     * @param basePath Base path of the URL (e.g https://petstore.swagger.io/v2
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {
