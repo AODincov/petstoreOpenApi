@@ -45,9 +45,8 @@ public class ApiKeyAuth implements Authentication {
     return apiKey;
   }
 
-  public ApiKeyAuth setApiKey(String apiKey) {
+  public void setApiKey(String apiKey) {
     this.apiKey = apiKey;
-    return this;
   }
 
   public String getApiKeyPrefix() {
