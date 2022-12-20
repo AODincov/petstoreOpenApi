@@ -19,12 +19,8 @@ import org.openapitools.client.ApiException;
 import org.openapitools.client.ApiResponse;
 import org.openapitools.client.Configuration;
 import org.openapitools.client.Pair;
-import org.openapitools.client.ProgressRequestBody;
-import org.openapitools.client.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 
 
 import java.io.File;
@@ -36,7 +32,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.ws.rs.core.GenericType;
 
 public class PetApi {
     private ApiClient localVarApiClient;
@@ -615,7 +610,7 @@ public class PetApi {
         <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPetByIdCall(Long petId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPetByIdCall(Integer petId, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -662,7 +657,7 @@ public class PetApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPetByIdValidateBeforeCall(Long petId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call getPetByIdValidateBeforeCall(Integer petId, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'petId' is set
         if (petId == null) {
             throw new ApiException("Missing the required parameter 'petId' when calling getPetById(Async)");
@@ -686,7 +681,7 @@ public class PetApi {
         <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
      </table>
      */
-    public Pet getPetById(Long petId) throws ApiException {
+    public Pet getPetById(Integer petId) throws ApiException {
         ApiResponse<Pet> localVarResp = getPetByIdWithHttpInfo(petId);
         return localVarResp.getData();
     }
@@ -705,7 +700,7 @@ public class PetApi {
         <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Pet> getPetByIdWithHttpInfo(Long petId) throws ApiException {
+    public ApiResponse<Pet> getPetByIdWithHttpInfo(Integer petId) throws ApiException {
         okhttp3.Call localVarCall = getPetByIdValidateBeforeCall(petId, null);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -726,7 +721,7 @@ public class PetApi {
         <tr><td> 404 </td><td> Pet not found </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPetByIdAsync(Long petId, final ApiCallback<Pet> _callback) throws ApiException {
+    public okhttp3.Call getPetByIdAsync(Integer petId, final ApiCallback<Pet> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getPetByIdValidateBeforeCall(petId, _callback);
         Type localVarReturnType = new TypeToken<Pet>(){}.getType();

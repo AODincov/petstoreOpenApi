@@ -14,17 +14,20 @@
 package org.openapitools.client.api;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openapitools.client.ApiClient;
 import org.openapitools.client.ApiException;
 
 import java.io.File;
 
+import org.openapitools.client.auth.ApiKeyAuth;
+import org.openapitools.client.auth.Authentication;
+import org.openapitools.client.auth.OAuth;
 import org.openapitools.client.model.Category;
 import org.openapitools.client.model.ModelApiResponse;
 import org.openapitools.client.model.Pet;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openapitools.client.model.Tag;
-
 import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -45,22 +48,32 @@ public class PetApiTest {
      */
     @Test
     public void addPetTest() throws ApiException {
+
+        //как я понял авторизация выполняется как то так.
+        //  не могу проверить т.к. в petstore нет проверки авторизации
+        PetApi authorizedApi = new PetApi(new ApiClient(new HashMap<String, Authentication>(){{
+            put("api_key", new ApiKeyAuth("header", "api_key").setApiKey("special-key"));
+            put("petstore_auth", new OAuth("special-key"));
+        }}));
+
+        Integer id = 123;
         Pet pet = new Pet();
         pet
-                .id(123L)
+                .id(id)
                 .category(new Category()
-                        .id(0L)
+                        .id(0)
                         .name("string"))
                 .name(RandomStringUtils.random(14, true, false))
                 .photoUrls(Collections.singletonList("qeqrq"))
                 .tags(Collections.singletonList(new Tag()
-                        .id(12L)
+                        .id(12)
                         .name("fwaf")))
                 .status(Pet.StatusEnum.AVAILABLE)
 
         ;
-        Pet response = api.addPet(pet);
+        Pet response = authorizedApi.addPet(pet);
         assertThat(pet.toJson(), equalTo(response.toJson()));
+        assertThat(pet.toJson(), equalTo(api.getPetById(id).toJson()));
     }
 
     /**
@@ -113,7 +126,7 @@ public class PetApiTest {
      */
     @Test
     public void getPetByIdTest() throws ApiException {
-        Long petId = null;
+        Integer petId = null;
         Pet response = api.getPetById(petId);
         // TODO: test validations
     }

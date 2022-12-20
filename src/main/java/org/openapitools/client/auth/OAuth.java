@@ -22,6 +22,15 @@ import java.util.List;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2022-12-19T10:47:56.761919+03:00[Europe/Moscow]")
 public class OAuth implements Authentication {
+
+  public OAuth(){
+
+  }
+
+  public OAuth(String accessToken){
+    setAccessToken(accessToken);
+  }
+
   private String accessToken;
 
   public String getAccessToken() {
