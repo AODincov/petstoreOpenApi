@@ -51,6 +51,10 @@ public class PetApiTest {
 
         //как я понял авторизация выполняется как то так.
         //  не могу проверить т.к. в petstore нет проверки авторизации
+        PetApi authorizedApi = new PetApi(new ApiClient(new HashMap<String, Authentication>(){{
+            put("api_key", new ApiKeyAuth("header", "api_key").setApiKey("special-key"));
+            put("petstore_auth", new OAuth("special-key"));
+        }}));
 
         Integer id = 123;
         Pet pet = new Pet();
@@ -67,7 +71,7 @@ public class PetApiTest {
                 .status(Pet.StatusEnum.AVAILABLE)
 
         ;
-        Pet response = api.addPet(pet);
+        Pet response = authorizedApi.addPet(pet);
         assertThat(pet.toJson(), equalTo(response.toJson()));
         assertThat(pet.toJson(), equalTo(api.getPetById(id).toJson()));
     }
@@ -79,8 +83,6 @@ public class PetApiTest {
      */
     @Test
     public void deletePetTest() throws ApiException {
-
-
         Long petId = null;
         String apiKey = null;
         api.deletePet(petId, apiKey);
