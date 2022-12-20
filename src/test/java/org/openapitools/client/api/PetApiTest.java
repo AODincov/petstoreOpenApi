@@ -71,7 +71,7 @@ public class PetApiTest {
                 .status(Pet.StatusEnum.AVAILABLE)
 
         ;
-        Pet response = authorizedApi.addPet(pet);
+        Pet response = api.addPet(pet);
         assertThat(pet.toJson(), equalTo(response.toJson()));
         assertThat(pet.toJson(), equalTo(api.getPetById(id).toJson()));
     }
@@ -83,10 +83,46 @@ public class PetApiTest {
      */
     @Test
     public void deletePetTest() throws ApiException {
-        Long petId = null;
+
+        Integer id = 123;
+        Pet pet = new Pet();
+        pet
+                .id(id)
+                .category(new Category()
+                        .id(0)
+                        .name("string"))
+                .name(RandomStringUtils.random(14, true, false))
+                .photoUrls(Collections.singletonList("qeqrq"))
+                .tags(Collections.singletonList(new Tag()
+                        .id(12)
+                        .name("fwaf")))
+                .status(Pet.StatusEnum.AVAILABLE)
+
+        ;
+        api.addPet(pet);
+
+
+        Long petId = id.longValue();
+        //String apiKey = "special-key";
+        //petstore не проверяет ключ авторизации и его наличие
         String apiKey = null;
         api.deletePet(petId, apiKey);
-        // TODO: test validations
+
+        // при ошибке десериализации пробрасывает исключение
+        //такое поведение вынуждает оборачивать проверки негативных кодов ответа
+
+         Pet resp = null;
+
+        try {
+            resp = api.getPetById(petId.intValue());
+        } catch (ApiException e){
+            assertThat(e.getCode(),equalTo(404));
+        } finally {
+            if (resp != null){
+                throw new RuntimeException();
+            }
+        }
+
     }
 
     /**
